@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPCoreDB.Migrations
 {
     [DbContext(typeof(CollegeContext))]
-    [Migration("20230611121922_changeserver")]
-    partial class changeserver
+    [Migration("20230721021431_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

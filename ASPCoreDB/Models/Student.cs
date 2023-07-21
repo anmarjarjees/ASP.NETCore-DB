@@ -24,11 +24,18 @@ namespace ASPCoreDB.Models
 
         /*
         the property Id will represent the primary key for our table.
-        now we can decorate the property with an attribute named "[key]
-        to indicate that it's the primary key if we need
+        now we can decorate the property with an attribute named "[key]"
+        with capital "K" to indicate that it's the primary key if we need
+
+        The [PrimaryKey] attribute was introduced in EF Core 7.0. 
+
+        Link:https://learn.microsoft.com/en-us/ef/core/modeling/keys?tabs=data-annotations 
+
+        By convention, a property named Id or <type name>Id 
+        will be configured as the primary key of an entity.
         */
 
-        [Key]
+        [Key] // Here is the use of [Key] is optional
         public int Id { get; set; }
 
 

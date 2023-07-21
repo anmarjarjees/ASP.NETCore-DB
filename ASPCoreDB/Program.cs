@@ -14,14 +14,22 @@ namespace ASPCoreDB
             builder.Services.AddRazorPages();
 
             /*
-            Adding Our custom services first,
-            before building the application
+            Adding Our custom services first with: builder.Services.Add...
+            before building the application with: builder.Build();
 
             The database context is registered with the Dependency Injection container
 
-            - using the method "AddDbContext"
-            - mapping it to our class <CollegeContext>
-            - adding the lambda expression for the options
+            - using the method "AddDbContext()"
+            - mapping it to our class <CollegeContext> as the data type
+            - adding the lambda expression with the parameter "options"
+
+            NOTES:
+            *****
+            1. the statement: using ASPCoreDB.Data;
+            is added to access our class "CollegeContext" inside "Data" folder
+
+            2. the statement: using Microsoft.EntityFrameworkCore;
+            is added for using options.UseSqlServer EF
 
             Link: https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/adding-model?view=aspnetcore-7.0&tabs=visual-studio#dependency-injection
 
@@ -29,8 +37,9 @@ namespace ASPCoreDB
             Since we installed the SQL Server Package with Packages Manager,
             we have the "UseSqlServer" method
 
-            CollegeContext is just the name for our connection string (can be any name).
-            This named in defined/added to the JSON file for the application
+            CollegeContext is just the name for our connection string 
+            (It can be any name that we specify inside the "appsettings.json" file).
+            This "CollegeContext" name is defined/added to the JSON file for the application
             */
             builder.Services.AddDbContext<CollegeContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("CollegeContext")));
