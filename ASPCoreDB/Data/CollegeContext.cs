@@ -22,18 +22,27 @@ namespace ASPCoreDB.Data
 
         // adding the properties:
         // type prop then tab, tab
+        
         /*
         Specify the tables that we want to have in our database
 
-        each property will represent a table in our database
+        Each property will represent a table in our database
         property "Students" for Students table
-        the Student table is built on the entity "Student"
+
+        The Student table is built on the entity "Student"
         and we have a class for this entity named "Student"
+
+        We can use the property "Students" to:
+        - Create a new student
+        - Read student record(s)
+        - Update student 
+        - Delete student
 
         notice that we might have a list of students, so with EF,
         we don't use list, or array, we use a special set named DbSet
 
         DbSet<ClassType> PropertyName (based on the table name)
+        ClassType will be imported from the Models, in this case "Student"
         */
         public DbSet<Student> Students { get; set; }
 

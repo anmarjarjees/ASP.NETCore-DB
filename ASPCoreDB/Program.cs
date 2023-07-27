@@ -1,6 +1,7 @@
 using ASPCoreDB.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.ComponentModel;
 
 namespace ASPCoreDB
 {
@@ -8,9 +9,16 @@ namespace ASPCoreDB
     {
         public static void Main(string[] args)
         {
+            /*
+            To learn more about the default code of "Program.cs":
+            Link: https://learn.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-7.0&tabs=visual-studio#programcs 
+            */
+
+            // create a WebApplicationBuilder object with preconfigured defaults
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Add services to the Dependency Injection (DI) container.
+            // Add Razor Pages support to the DI container, 
             builder.Services.AddRazorPages();
 
             /*
@@ -24,7 +32,7 @@ namespace ASPCoreDB
             - adding the lambda expression with the parameter "options"
 
             NOTES:
-            *****
+            ******
             1. the statement: using ASPCoreDB.Data;
             is added to access our class "CollegeContext" inside "Data" folder
 
@@ -46,6 +54,12 @@ namespace ASPCoreDB
 
             var app = builder.Build();
 
+            /*
+            The following code:
+            - sets the exception endpoint to /Error 
+            - enables HTTP Strict Transport Security Protocol (HSTS) 
+            when the app is not running in development mode:
+            */
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -54,16 +68,20 @@ namespace ASPCoreDB
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
-            app.UseRouting();
+            /*
+            The following code enables various Middleware:
+            */
+            app.UseHttpsRedirection(); // Redirects HTTP requests to HTTPS
+            app.UseStaticFiles(); // Enables static files: HTML, CSS, images, and JS to be served
 
-            app.UseAuthorization();
+            app.UseRouting(); // Adds route matching to the middleware pipeline.
 
-            app.MapRazorPages();
+            app.UseAuthorization(); //  Authorizes a user to access secure resources.(unused in this app)
 
-            app.Run();
+            app.MapRazorPages(); //  Configures endpoint routing for Razor Pages.
+
+            app.Run(); // Runs the app
         }
     }
 }
